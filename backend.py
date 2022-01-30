@@ -1,4 +1,3 @@
-import pywebio
 from pywebio.input import *
 from pywebio.output import *
 from pywebio import start_server
@@ -254,7 +253,7 @@ def change_products(db, cursor, productlist):
 def change_product_visibility(db, cursor, productlist):
     products = []
     for i in productlist:
-        products.append(pywebio.input.radio(productlist[i].name,
+        products.append(radio(productlist[i].name,
                                             name=str(productlist[i].id),
                                             options=[True, False],
                                             id=productlist[i].id,
