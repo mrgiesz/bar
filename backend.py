@@ -69,7 +69,7 @@ def add_expense(db, cursor, users):
 
 def main():
     # display main button screen
-    buttonscreen()
+    adminscreen()
 
 
 def get_products(db, cursor):
@@ -101,7 +101,7 @@ def add_to_db(db, cursor, querie, variables):
 
 def btn_click(btn_val):
     # initiate db connection:
-    db = pymysql.connect(host="10.9.28.204", user="python_user", password="python_password", db="bar2", )
+    db = pymysql.connect(host="10.9.33.8", user="python_user", password="python_password", db="bar2", )
     db.autocommit(True)
     cursor = db.cursor()
 
@@ -123,7 +123,7 @@ def btn_click(btn_val):
         add_product(db, cursor)
 
 
-def buttonscreen():
+def adminscreen():
     put_table([
         ['Catogories', 'options'],
 
@@ -283,6 +283,16 @@ def add_product(db, cursor):
     )
     add_to_db(db, cursor, 'add_product', (data['name'], data['cost']))
 
+def main_screen(db, cursor, productlist):
+
+
+    put_buttons([
+        dict(label=productlist[i].name, value=productlist[i].id, color='success')
+        for i in productlist
+    ], onclick=btn_click)
+
+
 
 if __name__ == '__main__':
-    start_server(main, port=8080, debug=True)
+    #start_server(main, port=8080)
+    main()
